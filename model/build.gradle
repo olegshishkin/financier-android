@@ -32,6 +32,7 @@ openApiGenerate {
     generateApiTests = false
     generateApiDocumentation = false
     skipValidateSpec = false
+    templateDir = "$projectDir/src/main/resources/templates/Java".toString()
     configOptions = [
             dateLibrary            : 'java8',
             library                : 'retrofit2',
