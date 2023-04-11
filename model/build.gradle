@@ -1,0 +1,61 @@
+plugins {
+    id 'java-library'
+    id 'org.openapi.generator'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+dependencies {
+    compileOnly 'com.squareup.retrofit2:retrofit:2.9.0'
+//    compileOnly 'com.google.code.gson:gson:2.10.1'
+    compileOnly 'com.squareup.retrofit2:converter-gson:2.9.0'
+    compileOnly 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+    compileOnly 'org.openapitools:jackson-databind-nullable:0.2.1'
+}
+
+openApiGenerate {
+    verbose = true
+    validateSpec = true
+    generatorName = 'java'
+    outputDir = "$buildDir/generated/sources".toString()
+    inputSpec = "$projectDir/src/main/resources/specs/financier/v1/openapi.yaml".toString()
+    packageName = 'com.github.olegshishkin.financier.api'
+    apiPackage = 'com.github.olegshishkin.financier.api'
+    modelPackage = 'com.github.olegshishkin.financier.api.model'
+    modelNameSuffix = 'DTO'
+    invokerPackage = 'com.github.olegshishkin.financier.android.rest.client'
+    generateModelTests = false
+    generateModelDocumentation = false
+    generateApiTests = false
+    generateApiDocumentation = false
+    skipValidateSpec = false
+    configOptions = [
+            dateLibrary            : 'java8',
+            library                : 'retrofit2',
+            useBeanValidation      : 'false',
+            useGzipFeature         : 'true',
+            useJakartaEe           : 'true',
+            generateBuilders       : 'true',
+            fullJavaUtil           : 'true',
+            serializableModel      : 'true',
+            openApiNullable        : 'false',
+            delegatePattern        : 'true',
+            hideGenerationTimestamp: 'true'
+    ]
+    globalProperties = [
+            apis      : '',
+            apiDocs   : 'false',
+            apiTests  : 'false',
+            invokers  : '',
+            models    : '',
+            modelDocs : 'false',
+            modelTests: 'false',
+    ]
+}
+
+compileJava.dependsOn tasks.openApiGenerate
+
+sourceSets.main.java.srcDirs += "$buildDir/generated/sources/src/main/java"
