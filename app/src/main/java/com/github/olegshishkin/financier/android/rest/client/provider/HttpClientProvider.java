@@ -1,4 +1,4 @@
-package com.github.olegshishkin.financier.android.rest.client;
+package com.github.olegshishkin.financier.android.rest.client.provider;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

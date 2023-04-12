@@ -3,6 +3,7 @@ package com.github.olegshishkin.financier.android.rest.client;
 import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 
 import com.github.olegshishkin.financier.android.rest.FinancierApi;
+import com.github.olegshishkin.financier.android.rest.client.provider.HttpClientProvider;
 
 public class Financier {
 
