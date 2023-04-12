@@ -2,10 +2,13 @@ package com.github.olegshishkin.financier.android;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import com.github.olegshishkin.financier.android.account.AccountsFragment;
 import com.github.olegshishkin.financier.android.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+
+    private FragmentTransaction fragmentTx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             //todo
 //            var binding = ActivityMainBinding.inflate(getLayoutInflater());
-            getSupportFragmentManager().beginTransaction()
+            this.fragmentTx = getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(binding.fragmentContainerView.getId(), AccountsFragment.class, null)
-                    .commit();
+                    .add(binding.fragmentContainerView.getId(), AccountsFragment.class, null);
+            this.fragmentTx.commit();
         }
     }
 }

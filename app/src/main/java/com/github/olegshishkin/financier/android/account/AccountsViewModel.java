@@ -4,24 +4,25 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import java.util.ArrayList;
+import com.github.olegshishkin.financier.android.rest.service.AccountRestService;
 import java.util.List;
 
 public class AccountsViewModel extends AndroidViewModel {
 
-    private final LiveData<List<AccountListItem>> items;
+    private final AccountRestService accountRestService;
+    private final LiveData<List<AccountListItem>> getAllAccountsLiveData;
 
     public AccountsViewModel(@NonNull Application application) {
         super(application);
-        this.items = new MutableLiveData<>(new ArrayList<>());
+        this.accountRestService = new AccountRestService();
+        this.getAllAccountsLiveData = this.accountRestService.getGetAllAccountsLiveData();
     }
 
-    public LiveData<List<AccountListItem>> getItems() {
-        return items;
+    public LiveData<List<AccountListItem>> getGetAllAccountsLiveData() {
+        return this.getAllAccountsLiveData;
     }
 
-    public void insert(AccountListItem item) {
-        this.items.getValue().add(item);
+    public void getAllAccounts() {
+        this.accountRestService.getAllAccounts();
     }
 }
