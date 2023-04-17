@@ -1,0 +1,42 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.github.olegshishkin.financier.android.core.data'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 33
+        targetSdk 33
+    }
+
+    buildFeatures {
+        aidl = false
+        buildConfig = false
+        renderScript = false
+        shaders = false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    // App
+    implementation project(path: ':data-dto')
+    implementation project(path: ':domain')
+
+    // Common
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-livedata:$rootProject.lifecycleVersion"
+}
+

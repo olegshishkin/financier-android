@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.github.olegshishkin.financier.android.account.AccountDetailsFragment">
+
+    <TextView
+      android:id="@+id/accountName"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:text="@{account.name}"/>
+  </FrameLayout>
+
+  <data>
+    <variable
+      name="account"
+      type="com.github.olegshishkin.financier.android.domain.model.Account" />
+  </data>
+
+</layout>

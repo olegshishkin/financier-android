@@ -16,5 +16,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "financier"
 
-include ':app'
-include ':model'
+include ':presentation'
+include ':data-dto'
+include ':domain'
+include ':data-core'
